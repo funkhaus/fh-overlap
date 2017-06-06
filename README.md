@@ -15,7 +15,7 @@ Simple plugin for detecting overlapping elements. No dependencies required.
 That's it! The `overlapping` class will be added to both `.first-thing-to-check` and `.second-thing-to-check` whenever they overlap each other, and removed when they don't.
 
 ### Options
-You can also pass an object with the following options:
+You can also pass an object with the following options (defaults specified)
 
 ```js
 new OverlapWatch({
