@@ -1,18 +1,34 @@
 ## What
-Boilerplate for developing JS libraries.
+Simple plugin for detecting overlapping elements. No dependencies required.
 
 ## How
+```html
+<div class="first-thing-to-check"></div>
+<div class="second-thing-to-check"></div>
+
+<script src="path/to/bundle.js"></script>
+<script>
+    new OverlapWatch('.first-thing-to-check', '.second-thing-to-check');
+</script>
+```
+
+That's it! The `overlapping` class will be added to both `.first-thing-to-check` and `.second-thing-to-check` whenever they overlap each other, and removed when they don't.
+
+### Options
+You can also pass an object with the following options:
+
+```js
+new OverlapWatch({
+    elementA: null, // First element to watch. Use Element object (ie, `document.querySelector('...')` or `jQuery('...').get(0)`)
+    elementB: null, // Second element to watch. Use Element object (ie, `document.querySelector('...')` or `jQuery('...').get(0)`)
+    class: 'overlapping', // String with classname to add to overlapping elements (and remove when they stop overlapping)
+    log: true, // Whether or not this watcher should log errors
+    container: window // The container whose scroll this watcher will watch
+})
+```
+
+## Development
 1. Clone this repo.
 1. `npm install`
-1. Work out of `/src` and build to `/dist`.
-
-### Development
-Edit the `index.ejs` file to include an example of your library's implementation, then run the local webpack-dev-server with livereload and autocompile on [http://localhost:8080/](http://localhost:8080/) with
-```sh
-$ npm run dev
-```
-### Deployment
-Build the current application
-```sh
-$ npm run build
-```
+1. `npm run dev` for development.
+1. `npm run build` for bundling/minification.

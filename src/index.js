@@ -39,7 +39,10 @@ module.exports = class OverlapWatch {
         }
 
         // Set up scroll listener
-        this.opts.container.addEventListener('scroll', () => { this.onScroll() })
+        this.opts.container.addEventListener('scroll', () => { this.refresh() })
+
+        // Set up resize listener
+        window.addEventListener('resize', () => this.refresh() )
 
         // Set up classname
         if( ! this.opts.hasOwnProperty('class') ){
@@ -48,7 +51,7 @@ module.exports = class OverlapWatch {
 
     }
 
-    onScroll(){
+    refresh(){
         if( this.overlapping( this.opts.elementA, this.opts.elementB ) ){
             this.opts.elementA.classList.add( this.opts.class )
             this.opts.elementB.classList.add( this.opts.class )
