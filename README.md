@@ -27,6 +27,11 @@ new OverlapWatch({
 })
 ```
 
+### Methods
+Save the instantiated and you'll have access to these methods:
+
+* `refresh()` - checks and adds/removes overlapping classes as necessary. This is what the plugin runs internally on scroll and resize.
+
 ## Development
 1. Clone this repo.
 1. `npm install`
