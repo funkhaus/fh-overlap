@@ -7,6 +7,7 @@ module.exports = Object.assign(webpackConfig, {
     output: {
         pathinfo: true,
         publicPath: '/',
+        library: 'OverlapWatch',
         filename: '[name].js'
     }
 
