@@ -17,11 +17,14 @@
             padding: 60px 20px;
             border-radius: 15px;
             left: 20px;
-            top: 140px;
+            top: 100px;
             width: 110px;
             box-sizing: border-box;
 
             transition: opacity 0.4s;
+        }
+        .fixed.second {
+            top: 200px;
         }
         .fixed.overlapping {
             opacity: 0;
@@ -43,12 +46,17 @@
         <div class="fixed">
           I'm fixed.
         </div>
+        <div class="fixed second">
+          I'm also fixed.
+        </div>
 
         <div class="entry">
             <h3>Scroll down.</h3>
             <p>Overlapping detection based on <a target="_blank" href="http://stackoverflow.com/questions/13390333/two-rectangles-intersection">this answer</a>.</p>
             <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <blockquote>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</blockquote>
+            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             <blockquote>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</blockquote>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
@@ -75,8 +83,8 @@
 <!-- for example, code to test the contents of bundle.js -->
 
 <script>
-    // shortcut
-    new OverlapWatch('blockquote', '.fixed')
+
+    var xyz = new OverlapWatch('blockquote', '.fixed');
 
     // full options
     /*

@@ -3,7 +3,7 @@ module.exports = class OverlapWatch {
     constructor(opts, elementB){
 
         if( typeof opts == 'string' ){
-            this.opts = { elementA: document.querySelector(opts) }
+            this.opts = { elementA: document.querySelectorAll(opts) }
         } else if( typeof opts == 'object' ) {
             this.opts = opts
         } else {
@@ -11,7 +11,19 @@ module.exports = class OverlapWatch {
         }
 
         if( elementB !== undefined ){
-            this.opts.elementB = document.querySelector(elementB)
+            if( typeof elementB == 'string' ){
+
+                // find all elements matching selector
+                const allElementB = document.querySelectorAll(elementB)
+                this.children = []
+
+                // instantiate a new OverlapWatch for each elementB
+                for( let i = 0; i < allElementB.length; i++ ){
+                    this.children.push( new OverlapWatch(opts, allElementB[i]) )
+                }
+            } else {
+                this.opts.elementB = elementB
+            }
         }
 
         // Set up container
@@ -20,7 +32,7 @@ module.exports = class OverlapWatch {
         }
 
         // Cancel early if required params not defined
-        const log = !this.opts.hasOwnProperty('log') || this.opts.log
+        const log = this.opts.hasOwnProperty('log') && this.opts.log
         if( !this.opts.elementA ){
             if( log ){
                 console.warn('First element "' + this.opts.elementA + '" undefined, cancelling overlap check.')
@@ -52,13 +64,22 @@ module.exports = class OverlapWatch {
     }
 
     refresh(){
-        if( this.overlapping( this.opts.elementA, this.opts.elementB ) ){
-            this.opts.elementA.classList.add( this.opts.class )
-            this.opts.elementB.classList.add( this.opts.class )
-        } else {
-            this.opts.elementA.classList.remove( this.opts.class )
-            this.opts.elementB.classList.remove( this.opts.class )
+
+        for( let i = 0; i < this.opts.elementA.length; i++ ){
+
+            const a = this.opts.elementA[i]
+
+            if( this.overlapping( a, this.opts.elementB ) ){
+                a.classList.add( this.opts.class )
+                this.opts.elementB.classList.add( this.opts.class )
+                break
+            } else {
+                a.classList.remove( this.opts.class )
+                this.opts.elementB.classList.remove( this.opts.class )
+            }
+
         }
+
     }
 
     overlapping( elementA, elementB ){
