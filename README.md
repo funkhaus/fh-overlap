@@ -19,8 +19,8 @@ You can also pass an object with the following options (defaults specified)
 
 ```js
 new OverlapWatch({
-    elementA: null, // First element to watch. Use Element object (ie, `document.querySelector('...')` or `jQuery('...').get(0)`)
-    elementB: null, // Second element to watch. Use Element object (ie, `document.querySelector('...')` or `jQuery('...').get(0)`)
+    elementA: null, // First element to watch. String or Element object (ie, `document.querySelector('...')` or `jQuery('...').get(0)`)
+    elementB: null, // Second element to watch. String or Element object (ie, `document.querySelector('...')` or `jQuery('...').get(0)`)
     class: 'overlapping', // String with classname to add to overlapping elements (and remove when they stop overlapping)
     log: true, // Whether or not this watcher should log errors
     container: window // The container whose scroll this watcher will watch

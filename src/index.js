@@ -18,8 +18,8 @@ module.exports = class OverlapWatch {
                 this.children = []
 
                 // instantiate a new OverlapWatch for each elementB
-                for( let i = 0; i < allElementB.length; i++ ){
-                    this.children.push( new OverlapWatch(opts, allElementB[i]) )
+                for( let element of allElementB ){
+                    this.children.push( new OverlapWatch(opts, element) )
                 }
             } else {
                 this.opts.elementB = elementB
@@ -65,20 +65,28 @@ module.exports = class OverlapWatch {
 
     refresh(){
 
-        for( let i = 0; i < this.opts.elementA.length; i++ ){
+        if( this.hasOwnProperty('children') ){
+            for( let child of children ){
+                child.refresh()
+            }
+        } else {
+            for( let i = 0; i < this.opts.elementA.length; i++ ){
 
-            const a = this.opts.elementA[i]
+                const a = this.opts.elementA[i]
 
-            if( this.overlapping( a, this.opts.elementB ) ){
-                a.classList.add( this.opts.class )
-                this.opts.elementB.classList.add( this.opts.class )
-                break
-            } else {
-                a.classList.remove( this.opts.class )
-                this.opts.elementB.classList.remove( this.opts.class )
+                if( this.overlapping( a, this.opts.elementB ) ){
+                    a.classList.add( this.opts.class )
+                    this.opts.elementB.classList.add( this.opts.class )
+                    break
+                } else {
+                    a.classList.remove( this.opts.class )
+                    this.opts.elementB.classList.remove( this.opts.class )
+                }
+
             }
 
         }
+
 
     }
 
